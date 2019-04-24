@@ -1,0 +1,39 @@
+{
+    "name": "mgmt",
+    "displayName": "mgmtconfig",
+    "author": {
+        "name": "Johan Bloemberg"
+    },
+    "categories": ["Other"],
+    "version": "0.0.1",
+    "keywords": ["mgmt", "mcl", "lang", "mgmtconfig"],
+    "engines": {
+        "vscode": ">=0.9.0-pre.1"
+    },
+    "publisher": "aequitas",
+    "description": "Language support for mgmtconfig",
+    "contributes": {
+        "languages": [
+            {
+                "id": "mcl",
+                "aliases": [
+                    "Mgmt"
+                ],
+                "extensions": [
+                    ".mcl"
+                ]
+            }
+        ],
+        "grammars": [
+            {
+                "language": "mcl",
+                "scopeName": "source.mcl",
+                "path": "./Syntaxes/mcl.tmLanguage.json"
+            }
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aequitas/mgmt.vscode"
+    }
+}

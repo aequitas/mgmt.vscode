@@ -1,0 +1,23 @@
+# comment
+
+import "fmt"
+import "sys"
+
+$boolean = true
+
+$number = 1 * 10
+
+$string = "string"
+
+$var = $var
+
+$uptime = sys.uptime()
+
+$uptime = sys.uptime("asdfljskdfj")
+
+$interpol = "test {{ .test }} bla"
+
+print "print1" {
+	msg => fmt.printf("uptime: %d", $uptime),
+	string => "test",
+}

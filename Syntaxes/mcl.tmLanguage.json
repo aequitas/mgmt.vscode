@@ -1,0 +1,85 @@
+{
+  "comment": "https://macromates.com/manual/en/language_grammars",
+  "scopeName": "source.mcl",
+  "patterns": [
+    { "match": "\\b(false|true)\\b",
+      "name": "constant.language.boolean"
+    },
+    { "match": "\\b[0-9]+\\b",
+      "name": "constant.numeric"
+    },
+    {	"name": "keyword.control.import",
+			"match": "\b(?:(import|from|as))\b"
+    },
+    { "match": "# .*",
+      "name": "comment.line.number-sign"
+    },
+    {
+			"name" : "keyword.control.import",
+			"match": "import"
+    },
+    { "name": "meta.structure.resource",
+			"begin": "^(?:\\s*)([a-zA-Z0-9\\_\\-]+)(?:\\s+(\"[^\"]*\")?)?\\s(\\=\\s)?({)($)?",
+      "beginCaptures": {
+        "0": { "name": "meta.structure.identifier" },
+        "1": { "name": "entity.name.type.resource.type" },
+        "2": { "name": "string.quoted.double.resource.name" },
+        "4": { "name": "punctuation.definition.block.begin" }
+      },
+      "end": "}",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.block.end" }
+      },
+      "patterns": [
+        { "name": "meta.structure.resource.arguments",
+          "match": "([a-zA-Z_-]+)\\s*=>\\s*(.+)",
+          "captures": {
+            "1": { "name": "constant.other.keyword"},
+            "2": { "patterns": [
+                {"include": "#function"},
+                {"include": "#string"},
+                {"include": "#variable"}
+              ]
+            }
+          }
+        }
+      ]
+    },
+    { "include": "#function" },
+    { "include": "#string" },
+    { "include": "#variable" }
+  ],
+  "repository": {
+    "variable":     { "name": "variable.language",
+      "match": "\\$[a-zA-Z][a-zA-Z0-9_-]+"
+    },
+    "function": {
+      "name": "meta",
+      "begin": "\\b([a-zA-Z\\.]+)\\(",
+      "beginCaptures": {
+        "1": {"name": "support.fuction"}
+      },
+      "end": "\\)",
+      "patterns": [
+        { "include": "#function" },
+        { "include": "#string" },
+        { "include": "#variable" }
+          ]
+    },
+    "string":     {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double",
+      "patterns": [
+        {"include": "#interpolation"}
+      ]
+    },
+    "interpolation": {
+      "name": "string.interpolation",
+      "match": "\\{\\{\\s*(.*)\\}\\}",
+      "captures": {
+        "1": {"name": "support.variable"}
+      }
+    }
+  }
+}
